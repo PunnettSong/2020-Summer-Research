@@ -1,7 +1,15 @@
 # Project-Haptic
 UON Summer Research Project
 
-# Purpose of the Application
+# Background
+
+The haptic device currently takes in an image that produces a static feel or friction. The problem with the device is that the friction is produced in an "inverted way".
+
+For instance, imagine an image of a black filled coloured circle with a white background. When the device takes in the image, the friction will be produced on the white background while the black filled circle has a smooth feel where there is no friction at all. Intuitively, the white background should be smooth while the dark black circle should be producing the highest friction. We also wanted the friction level to vary as the colour changes too.
+
+The purpose of the application is to produce an inverted image and integrate with the haptic device, so that it can produce an intuitive static projection from the image.
+
+# Functionality of the Application
 
 The application will takes an image in JPG, PNG and BMP and will perform the following functions:
  1. Invert the image
