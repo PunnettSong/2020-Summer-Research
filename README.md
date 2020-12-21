@@ -14,9 +14,9 @@ The purpose of the application is to produce an inverted image and integrate wit
 The application will takes an image in JPG, PNG and BMP and will perform the following functions:
  1. Invert the image
  2. Change the level of contrast of the image
- 3 Enlarge the pixel, but still maintaining the resolution, based on an input provided
+ 3. Enlarge the pixel, but still maintaining the resolution, based on an input provided
     For example: an image of a small line will be changed to a bigger line while the image resolution stays the same.
- 4 Enlarge the resolution of the image based on an input provided
+ 4. Enlarge the resolution of the image based on an input provided
 
 # Input
 
