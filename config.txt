@@ -1,3 +1,4 @@
-texture.jpg
-2
-1
+test.png
+5
+0
+0

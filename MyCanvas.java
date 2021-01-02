@@ -13,9 +13,8 @@ import javax.imageio.ImageIO;
 public class MyCanvas extends Canvas{
 
     static String extensionStr = "";
-    static int intensity = 0, scale = 0;
-    static float intensityValue, scaleValue;
-
+    static int intensity = 0, scale = 0, enlarge = 0;
+    static float intensityValue, scaleValue, enlargePercent;
 
 	public static void main(String[] args) throws IOException {
 
@@ -33,12 +32,12 @@ public class MyCanvas extends Canvas{
             //Reading the strings in the text file and save them into an array
             StringBuilder sb = new StringBuilder();
 
-            for(int i = 0; i < 3; i++){
+            for(int i = 0; i < 4; i++){
                 if (scanner.hasNextLine()) {
                     text[i] = scanner.nextLine(); 
                 }
                 else{
-                    text[i] = "5"; // if the second and third line is empty; issue a default value
+                    text[i] = "0"; // if the second and third line is empty; issue a default value
                 }
                 System.out.println(text[i]); // print out the strings in the text file
             }
@@ -53,11 +52,9 @@ public class MyCanvas extends Canvas{
             
             */
 
-
             for (int j = text[0].length() - 3; j < text[0].length(); j++){
                 sb.append(text[0].charAt(j));
             }
-            
             extensionStr = sb.toString(); // The third characters are placed into a string variable
             scanner.close();
         }
@@ -74,9 +71,15 @@ public class MyCanvas extends Canvas{
         */
 
         intensity = Integer.parseInt(text[1]); 
-        scale = Integer.parseInt(text[2]);
+        enlarge = Integer.parseInt(text[2]);
+    scale = Integer.parseInt(text[3]);
+       
 
         switch (intensity) {
+        
+        case 0:
+            intensityValue = 0.0f;
+
         case 1:
             intensityValue = 0.6f;
             break;
@@ -94,12 +97,38 @@ public class MyCanvas extends Canvas{
             break;
         }
 
+        switch (enlarge) {
+        
+        case 0:
+            enlargePercent = 1.0f;
+            break;
+        case 1:
+            enlargePercent = 1.1f;
+            break;
+        case 2:
+            enlargePercent = 1.2f;
+            break;
+        case 3:
+            enlargePercent = 1.3f; 
+            break;
+        case 4:
+            enlargePercent = 1.4f;
+            break;
+        case 5:
+            enlargePercent = 1.5f;
+            break;
+        }
+
         switch (scale) {
+        
+        case 0:
+            scaleValue = 1.0f;
+            break;
         case 1:
             scaleValue = 1.5f;
             break;
         case 2:
-            scaleValue = 2.0F;
+            scaleValue = 2.0f;
             break;
         case 3:
             scaleValue = 2.5f; 
@@ -112,12 +141,12 @@ public class MyCanvas extends Canvas{
             break;
         }
 
-
-        invertImage(text[0], intensityValue, scaleValue);
+        invertImage(text[0], intensityValue, enlargePercent, scaleValue);
     }
 
     // Invert Image and contrast change Function
-	public static void invertImage(String imageName, float intensityValue, float scaleValue) {
+	public static void invertImage(String imageName, float intensityValue, float pixelValue, float scaleValue) {
+        
         BufferedImage inputFile = null;
 
         //Reading the image
@@ -142,6 +171,7 @@ public class MyCanvas extends Canvas{
                 inputFile.setRGB(x, y, col.getRGB());
             }
         }
+
         // Change the contrast of the image
 
         RescaleOp op = new RescaleOp(intensityValue, 0, null);
@@ -152,17 +182,28 @@ public class MyCanvas extends Canvas{
         int resizedWidth = (int) (width * scaleValue);
         int resizedHeight = (int) (height * scaleValue);
 
+        int pixelWidth = (int) (width * pixelValue);
+        int pixelHeight = (int) (height * pixelValue);
+
         System.out.println(resizedWidth);
+        System.out.println(scaleValue);
         System.out.println(width);
+
+        BufferedImage zoomImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D zoomGraphics2D = zoomImage.createGraphics();
+        zoomGraphics2D.drawImage(inputFile, 0, 0, pixelWidth, pixelHeight, null); // different
+        zoomGraphics2D.dispose();
 
         BufferedImage resizedImage = new BufferedImage(resizedWidth, resizedHeight, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics2D = resizedImage.createGraphics();
-        graphics2D.drawImage(inputFile, 0, 0, resizedWidth, resizedHeight, null);
+        graphics2D.drawImage(zoomImage, 0, 0, resizedWidth, resizedHeight, null);
         graphics2D.dispose();
+
         
 
+        //Creating an output image
+
         try {
-            //Creating an output image
             ImageIO.write(resizedImage, extensionStr, new File("invert-" + imageName));
         } catch (IOException e) {
             e.printStackTrace();
