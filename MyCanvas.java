@@ -173,10 +173,10 @@ public class MyCanvas extends Canvas{
         }
 
         // Change the contrast of the image
-
-        RescaleOp op = new RescaleOp(intensityValue, 0, null);
-        inputFile = op.filter(inputFile, inputFile);
-
+        while(intensityValue == 0.0){
+            RescaleOp op = new RescaleOp(intensityValue, 0, null);
+            inputFile = op.filter(inputFile, inputFile);
+        }
         //Resizing an Image
 
         int resizedWidth = (int) (width * scaleValue);
