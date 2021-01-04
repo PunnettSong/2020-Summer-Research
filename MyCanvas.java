@@ -42,6 +42,21 @@ public class MyCanvas extends Canvas{
                 System.out.println(text[i]); // print out the strings in the text file
             }
 
+            /* 
+            
+            Establish a check for the extension when the letter is equal to a dot
+            
+            */
+            
+            int count = 0;
+            int letter = text[0].length()-1;
+            while(text[0].charAt(letter) != '.'){
+                count++;
+                letter--;
+            }
+
+            System.out.println(count);
+
             /*
 
             Scan for the last three characters of the image name such as JPG, PNG, BMP to be placed
@@ -52,11 +67,13 @@ public class MyCanvas extends Canvas{
             
             */
 
-            for (int j = text[0].length() - 3; j < text[0].length(); j++){
+            for(int j = text[0].length() - count; j < text[0].length(); j++){
                 sb.append(text[0].charAt(j));
             }
             extensionStr = sb.toString(); // The third characters are placed into a string variable
             scanner.close();
+
+            System.out.println(extensionStr);
         }
 
         catch (FileNotFoundException e) {
@@ -72,7 +89,7 @@ public class MyCanvas extends Canvas{
 
         intensity = Integer.parseInt(text[1]); 
         enlarge = Integer.parseInt(text[2]);
-    scale = Integer.parseInt(text[3]);
+        scale = Integer.parseInt(text[3]);
        
 
         switch (intensity) {
@@ -173,7 +190,7 @@ public class MyCanvas extends Canvas{
         }
 
         // Change the contrast of the image
-        while(intensityValue == 0.0){
+        if(intensityValue != 0.0){
             RescaleOp op = new RescaleOp(intensityValue, 0, null);
             inputFile = op.filter(inputFile, inputFile);
         }
