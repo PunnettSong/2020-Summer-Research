@@ -237,7 +237,7 @@ public class MyCanvas extends Canvas{
 
         //Creating an output image
         try {
-            ImageIO.write(resizedImage, extensionStr, new File("2invert-" + imageName));
+            ImageIO.write(resizedImage, extensionStr, new File("invert-" + imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }

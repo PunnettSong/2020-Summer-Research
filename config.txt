@@ -1,4 +1,4 @@
-graph.png
+test.png
 5
 0
 0
