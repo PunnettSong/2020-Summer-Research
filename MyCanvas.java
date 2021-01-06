@@ -30,6 +30,7 @@ public class MyCanvas extends Canvas{
             Scanner scanner = new Scanner(new File(args[0])); 
 
             //Reading the strings in the text file and save them into an array
+
             StringBuilder sb = new StringBuilder();
 
             for(int i = 0; i < 4; i++){
@@ -162,38 +163,56 @@ public class MyCanvas extends Canvas{
     }
 
     // Invert Image and contrast change Function
+
 	public static void invertImage(String imageName, float intensityValue, float pixelValue, float scaleValue) {
         
+        BufferedImage image = null;
         BufferedImage inputFile = null;
+        
 
         //Reading the image
+
         try {
-            inputFile = ImageIO.read(new File(imageName));
+
+            image = ImageIO.read(new File(imageName));
+            //inputFile = ImageIO.read(new File(imageName));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        int width = image.getWidth();
+        int height = image.getHeight();
 
-        int width = inputFile.getWidth();
-        int height = inputFile.getHeight();
 
         //Loop and grab the RGB pixel from the image and invert it
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                int rgba = inputFile.getRGB(x, y);
+                int rgba = image.getRGB(x, y);
                 Color col = new Color(rgba, true);
                 col = new Color(255 - col.getRed(),
                                 255 - col.getGreen(),
                                 255 - col.getBlue());
-                inputFile.setRGB(x, y, col.getRGB());
+                image.setRGB(x, y, col.getRGB());
             }
         }
 
-        // Change the contrast of the image
-        if(intensityValue != 0.0){
-            RescaleOp op = new RescaleOp(intensityValue, 0, null);
-            inputFile = op.filter(inputFile, inputFile);
+        if(width <= 210 || height <= 210){
+            width = (int) (width * 1.5f);
+            height = (int) (height * 1.5f);
         }
+
+        inputFile = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D addSize = inputFile.createGraphics();
+        addSize.drawImage(image, 0, 0, width, height, null);
+        addSize.dispose();
+
+        // Change the contrast of the image
+
+        RescaleOp op = new RescaleOp(intensityValue, 0, null);
+        inputFile = op.filter(inputFile, inputFile);
+        
         //Resizing an Image
 
         int resizedWidth = (int) (width * scaleValue);
@@ -216,12 +235,9 @@ public class MyCanvas extends Canvas{
         graphics2D.drawImage(zoomImage, 0, 0, resizedWidth, resizedHeight, null);
         graphics2D.dispose();
 
-        
-
         //Creating an output image
-
         try {
-            ImageIO.write(resizedImage, extensionStr, new File("invert-" + imageName));
+            ImageIO.write(resizedImage, extensionStr, new File("2invert-" + imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }
