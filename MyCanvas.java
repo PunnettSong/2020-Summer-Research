@@ -74,6 +74,7 @@ public class MyCanvas extends Canvas{
             extensionStr = sb.toString(); // The third characters are placed into a string variable
             scanner.close();
 
+            System.out.println(text[0]);
             System.out.println(extensionStr);
         }
 
