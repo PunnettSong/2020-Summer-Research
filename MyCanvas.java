@@ -40,7 +40,6 @@ public class MyCanvas extends Canvas{
                 else{
                     text[i] = "0"; // if the second and third line is empty; issue a default value
                 }
-                System.out.println(text[i]); // print out the strings in the text file
             }
 
             /* 
@@ -55,8 +54,6 @@ public class MyCanvas extends Canvas{
                 count++;
                 letter--;
             }
-
-            System.out.println(count);
 
             /*
 
@@ -73,9 +70,6 @@ public class MyCanvas extends Canvas{
             }
             extensionStr = sb.toString(); // The third characters are placed into a string variable
             scanner.close();
-
-            System.out.println(text[0]);
-            System.out.println(extensionStr);
         }
 
         catch (FileNotFoundException e) {
@@ -222,10 +216,6 @@ public class MyCanvas extends Canvas{
         int pixelWidth = (int) (width * pixelValue);
         int pixelHeight = (int) (height * pixelValue);
 
-        System.out.println(resizedWidth);
-        System.out.println(scaleValue);
-        System.out.println(width);
-
         BufferedImage zoomImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D zoomGraphics2D = zoomImage.createGraphics();
         zoomGraphics2D.drawImage(inputFile, 0, 0, pixelWidth, pixelHeight, null); // different
@@ -242,6 +232,9 @@ public class MyCanvas extends Canvas{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //Creating bold-like feature for application
+        // Write the code here
     }
 
 }
