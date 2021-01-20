@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 public class MyCanvas extends Canvas{
 
     static String extensionStr = "";
-    static int intensity = 0, scale = 0, enlarge = 0;
+    static int intensity = 0, scale = 0, enlarge = 0, bold = 0;
     static float intensityValue, scaleValue, enlargePercent;
 
 	public static void main(String[] args) throws IOException {
@@ -154,12 +154,34 @@ public class MyCanvas extends Canvas{
             break;
         }
 
-        invertImage(text[0], intensityValue, enlargePercent, scaleValue);
+        switch (bold) {
+        
+        case 0:
+            bold = 0;
+            break;
+        case 1:
+            bold= 1;
+            break;
+        case 2:
+            bold = 2;
+            break;
+        case 3:
+            bold = 3; 
+            break;
+        case 4:
+            bold = 4;
+            break;
+        case 5:
+            bold = 5;
+            break;
+        }
+
+        invertImage(text[0], intensityValue, enlargePercent, scaleValue, bold);
     }
 
     // Invert Image and contrast change Function
 
-	public static void invertImage(String imageName, float intensityValue, float pixelValue, float scaleValue) {
+	public static void invertImage(String imageName, float intensityValue, float pixelValue, float scaleValue, int bold) {
         
         BufferedImage image = null;
         BufferedImage inputFile = null;
@@ -170,7 +192,6 @@ public class MyCanvas extends Canvas{
         try {
 
             image = ImageIO.read(new File(imageName));
-            //inputFile = ImageIO.read(new File(imageName));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -179,6 +200,64 @@ public class MyCanvas extends Canvas{
         int width = image.getWidth();
         int height = image.getHeight();
 
+        int count = 0;
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int rgba = image.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    count++;
+                }
+            }
+        }
+
+        System.out.println("Old Picture: " + count);
+
+        // Working section
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int rgba = image.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    x++;
+                    col = new Color(col.getRed(),
+                                    col.getGreen(),
+                                    col.getBlue());
+                    image.setRGB(x, y, col.getRGB());
+                }
+            }
+        }
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int rgba = image.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    y++;
+                    col = new Color(col.getRed(),
+                                    col.getGreen(),
+                                    col.getBlue());
+                    image.setRGB(x, y, col.getRGB());
+                }
+            }
+        }
+
+        // Ending Section
+
+        int countBlack = 0;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int rgba = image.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    countBlack++;
+                }
+            }
+        }
+        
+        System.out.println("New Picture: " + countBlack);
+
+        
 
         //Loop and grab the RGB pixel from the image and invert it
 
@@ -232,7 +311,6 @@ public class MyCanvas extends Canvas{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         //Creating bold-like feature for application
         // Write the code here
     }

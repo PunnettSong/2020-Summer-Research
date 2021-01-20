@@ -1,4 +1,4 @@
-texture.jpg
-3
+line.png
+5
 0
 0

@@ -17,7 +17,7 @@ The application will takes an image in JPG, PNG and BMP and will perform the fol
  3. Enlarge the pixel, but still maintaining the resolution, based on an input provided
     For example: an image of a small line will be changed to a bigger line while the image resolution stays the same.
  4. Enlarge the resolution of the image based on an input provided
- 5. Enlarge the pixel of lines/graphs in the image assuming that the background is white
+ 5. Enlarge the pixel of lines/graphs in the image assuming that the background is white (i.e making the line/graphs more bold)
 
 # Input
 
@@ -26,7 +26,7 @@ The application will read the input from a textfile named "config.txt" where the
  2. An integer that controls the level of whiteness of the image. Integer (1 - 5)
  3. An integer that tells how large the pixel should be. Integer (1 - 5)
  4. An integer that tells how large the resolution should be. Integer (1 - 5)
- 5. An integer that tells how large the text should be. Integer(1 - 5)
+ 5. An integer that tells how large the bold should be. Integer(1 - 5)
  
  # Compile and Run the Application
 
