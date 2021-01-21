@@ -33,7 +33,7 @@ public class MyCanvas extends Canvas{
 
             StringBuilder sb = new StringBuilder();
 
-            for(int i = 0; i < 4; i++){
+            for(int i = 0; i < 5; i++){
                 if (scanner.hasNextLine()) {
                     text[i] = scanner.nextLine(); 
                 }
@@ -86,6 +86,7 @@ public class MyCanvas extends Canvas{
         intensity = Integer.parseInt(text[1]); 
         enlarge = Integer.parseInt(text[2]);
         scale = Integer.parseInt(text[3]);
+        bold = Integer.parseInt(text[4]);
        
 
         switch (intensity) {
@@ -160,19 +161,19 @@ public class MyCanvas extends Canvas{
             bold = 0;
             break;
         case 1:
-            bold= 1;
+            bold= 2;
             break;
         case 2:
-            bold = 2;
-            break;
-        case 3:
-            bold = 3; 
-            break;
-        case 4:
             bold = 4;
             break;
+        case 3:
+            bold = 6; 
+            break;
+        case 4:
+            bold = 8;
+            break;
         case 5:
-            bold = 5;
+            bold = 10;
             break;
         }
 
@@ -200,31 +201,20 @@ public class MyCanvas extends Canvas{
         int width = image.getWidth();
         int height = image.getHeight();
 
-        int count = 0;
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                int rgba = image.getRGB(x, y);
-                Color col = new Color(rgba, true);
-                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                    count++;
-                }
-            }
-        }
-
-        System.out.println("Old Picture: " + count);
-
-        // Working section
+        // Enlarging the pixel of a line/graph
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int rgba = image.getRGB(x, y);
                 Color col = new Color(rgba, true);
                 if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                    x++;
-                    col = new Color(col.getRed(),
-                                    col.getGreen(),
-                                    col.getBlue());
-                    image.setRGB(x, y, col.getRGB());
+                    for(int i = 0; i < 10; i++){
+                        x++;
+                        col = new Color(col.getRed(),
+                                        col.getGreen(),
+                                        col.getBlue());
+                        image.setRGB(x, y, col.getRGB());
+                    }
                 }
             }
         }
@@ -233,31 +223,16 @@ public class MyCanvas extends Canvas{
                 int rgba = image.getRGB(x, y);
                 Color col = new Color(rgba, true);
                 if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                    y++;
-                    col = new Color(col.getRed(),
-                                    col.getGreen(),
-                                    col.getBlue());
-                    image.setRGB(x, y, col.getRGB());
+                    for(int i = 0; i < 10; i++){
+                        y++;
+                        col = new Color(col.getRed(),
+                                        col.getGreen(),
+                                        col.getBlue());
+                        image.setRGB(x, y, col.getRGB());
+                    }
                 }
             }
         }
-
-        // Ending Section
-
-        int countBlack = 0;
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int rgba = image.getRGB(x, y);
-                Color col = new Color(rgba, true);
-                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                    countBlack++;
-                }
-            }
-        }
-        
-        System.out.println("New Picture: " + countBlack);
-
-        
 
         //Loop and grab the RGB pixel from the image and invert it
 
@@ -311,8 +286,6 @@ public class MyCanvas extends Canvas{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //Creating bold-like feature for application
-        // Write the code here
     }
 
 }
