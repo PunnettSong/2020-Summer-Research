@@ -186,7 +186,6 @@ public class MyCanvas extends Canvas{
         
         BufferedImage image = null;
         BufferedImage inputFile = null;
-        
 
         //Reading the image
 
@@ -201,52 +200,6 @@ public class MyCanvas extends Canvas{
         int width = image.getWidth();
         int height = image.getHeight();
 
-        // Enlarging the pixel of a line/graph
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int rgba = image.getRGB(x, y);
-                Color col = new Color(rgba, true);
-                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                    for(int i = 0; i < 10; i++){
-                        x++;
-                        col = new Color(col.getRed(),
-                                        col.getGreen(),
-                                        col.getBlue());
-                        image.setRGB(x, y, col.getRGB());
-                    }
-                }
-            }
-        }
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                int rgba = image.getRGB(x, y);
-                Color col = new Color(rgba, true);
-                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                    for(int i = 0; i < 10; i++){
-                        y++;
-                        col = new Color(col.getRed(),
-                                        col.getGreen(),
-                                        col.getBlue());
-                        image.setRGB(x, y, col.getRGB());
-                    }
-                }
-            }
-        }
-
-        //Loop and grab the RGB pixel from the image and invert it
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                int rgba = image.getRGB(x, y);
-                Color col = new Color(rgba, true);
-                col = new Color(255 - col.getRed(),
-                                255 - col.getGreen(),
-                                255 - col.getBlue());
-                image.setRGB(x, y, col.getRGB());
-            }
-        }
-
         if(width <= 210 || height <= 210){
             width = (int) (width * 1.5f);
             height = (int) (height * 1.5f);
@@ -256,6 +209,66 @@ public class MyCanvas extends Canvas{
         Graphics2D addSize = inputFile.createGraphics();
         addSize.drawImage(image, 0, 0, width, height, null);
         addSize.dispose();
+
+        // Enlarging the pixel of a line/graph
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int rgba = inputFile.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    for(int i = 0; i < bold; i++){
+                        x++;
+                        col = new Color(col.getRed(),
+                                        col.getGreen(),
+                                        col.getBlue());
+                        inputFile.setRGB(x, y, col.getRGB());
+                    }
+                }
+            }
+        }
+
+
+
+
+        // -- Working Section
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int rgba = inputFile.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    for(int i = 0; i < bold; i++){
+                        y++;
+                        col = new Color(col.getRed(),
+                                        col.getGreen(),
+                                        col.getBlue());
+                        inputFile.setRGB(x, y, col.getRGB());
+                    }
+                }
+            }
+        }
+
+        // -- Ending of Working Section
+
+
+
+
+
+
+        //Loop and grab the RGB pixel from the image and invert it
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int rgba = inputFile.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                col = new Color(255 - col.getRed(),
+                                255 - col.getGreen(),
+                                255 - col.getBlue());
+                inputFile.setRGB(x, y, col.getRGB());
+            }
+        }
+
 
         // Change the contrast of the image
 
