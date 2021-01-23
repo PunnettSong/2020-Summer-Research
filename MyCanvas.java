@@ -215,11 +215,16 @@ public class MyCanvas extends Canvas{
                 for (int x = 0; x < width; x++) {
                     int rgba = inputFile.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 || col.getGreen() != 255 || col.getBlue() != 255){
+                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());
                         for(int i = 0; i < bold; i++){
+                            int back = x--;
+                            inputFile.setRGB(back, y, col.getRGB());
+                        }
+                        
+                        for (int j = 0; j < bold; j++){
                             x++;
                             inputFile.setRGB(x, y, col.getRGB());
                         }
@@ -231,11 +236,15 @@ public class MyCanvas extends Canvas{
                 for (int y = 0; y < height; y++) {
                     int rgba = inputFile.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 || col.getGreen() != 255 || col.getBlue() != 255){
+                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());
                         for(int i = 0; i < bold; i++){
+                            int up = y--;
+                            inputFile.setRGB(up, y, col.getRGB());
+                        }
+                        for (int j = 0; j < bold; j++){
                             y++;
                             inputFile.setRGB(x, y, col.getRGB());
                         }
@@ -284,7 +293,7 @@ public class MyCanvas extends Canvas{
 
         //Creating an output image
         try {
-            ImageIO.write(resizedImage, extensionStr, new File("invert-" + imageName));
+            ImageIO.write(resizedImage, extensionStr, new File("2invert-" + imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }

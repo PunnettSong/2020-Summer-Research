@@ -1,5 +1,5 @@
-language2.png
+graph.png
 5
 0
 0
-1
+5
