@@ -209,7 +209,6 @@ public class MyCanvas extends Canvas{
         addSize.dispose();
 
         // Enlarging the pixel of a line/graph
-        // -- Working Section
         if(bold != 0){
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
@@ -223,7 +222,7 @@ public class MyCanvas extends Canvas{
                             int back = x--;
                             inputFile.setRGB(back, y, col.getRGB());
                         }
-                        
+
                         for (int j = 0; j < bold; j++){
                             x++;
                             inputFile.setRGB(x, y, col.getRGB());
@@ -242,8 +241,9 @@ public class MyCanvas extends Canvas{
                                         col.getBlue());
                         for(int i = 0; i < bold; i++){
                             int up = y--;
-                            inputFile.setRGB(up, y, col.getRGB());
+                            inputFile.setRGB(x, up, col.getRGB());
                         }
+
                         for (int j = 0; j < bold; j++){
                             y++;
                             inputFile.setRGB(x, y, col.getRGB());
@@ -265,8 +265,6 @@ public class MyCanvas extends Canvas{
                 inputFile.setRGB(x, y, col.getRGB());
             }
         }
-
-        
 
         // Change the contrast of the image
 
@@ -293,7 +291,7 @@ public class MyCanvas extends Canvas{
 
         //Creating an output image
         try {
-            ImageIO.write(resizedImage, extensionStr, new File("2invert-" + imageName));
+            ImageIO.write(resizedImage, extensionStr, new File("invert-" + imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }

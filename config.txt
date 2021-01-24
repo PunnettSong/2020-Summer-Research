@@ -1,5 +1,5 @@
-graph.png
+circle.png
 5
 0
 0
-5
+4
