@@ -12,23 +12,41 @@ The purpose of the application is to produce an inverted image and integrate wit
 # Functionality of the Application
 
 The application will takes an image in JPG, PNG and BMP and will perform the following functions:
+
  1. Invert the image
  2. Change the level of contrast of the image
- 3. Enlarge the pixel, but still maintaining the resolution, based on an input provided
-    For example: an image of a small line will be changed to a bigger line while the image resolution stays the same.
+ 3. Zooming the image
  4. Enlarge the resolution of the image based on an input provided
  5. Enlarge the pixel of lines/graphs in the image assuming that the background is white (i.e making the line/graphs more bold)
 
 # Input
 
 The application will read the input from a textfile named "config.txt" where the input consists of
+
  1. The name of the image in JPG, PNG and BMP
- 2. An integer that controls the level of whiteness of the image. Integer (1 - 5)
- 3. An integer that tells how large the pixel should be. Integer (1 - 5)
- 4. An integer that tells how large the resolution should be. Integer (1 - 5)
- 5. An integer that tells how large the bold should be. Integer(1 - 5)
+ 2. An integer that controls the level of whiteness of the image. 
+
+	Whiteness Level: 1 < Int < 6
+
+ 3. A float that tells how far the level of the zoom should be. 
+
+	Zooming in: Float > 1.0f e.g 1.3f
+	No Zoom: Float = 1.0f
+	Zooming out: 0.0f < Float < 1.0f 
+
+ 4. An float that tells how large the resolution should be.
+
+	Increase: Float > 1.0f e.g 1.3f
+	No changes: Float = 1.0f
+	Decrease: 0.0f < Float < 1.0f e.g 0.8f
+
+ 5. An integer that tells how large the bold should be. 
+	
+	No Bold: Int = 0
+	Bold Level: 1 < Int < 6
  
- # Compile and Run the Application
+
+# Compile and Run the Application
 
 Once the textfile is filled with relevent information, the application can be executed from the command prompt/terminal screen that takes in an argument which is the text file name.
 

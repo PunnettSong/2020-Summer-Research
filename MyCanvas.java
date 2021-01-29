@@ -82,8 +82,8 @@ public class MyCanvas extends Canvas{
         */
 
         intensity = Integer.parseInt(text[1]); 
-        enlarge = Integer.parseInt(text[2]);
-        scale = Integer.parseInt(text[3]);
+        enlargePercent = Float.parseFloat(text[2]);
+        scaleValue = Float.parseFloat(text[3]);
         bold = Integer.parseInt(text[4]);
        
 
@@ -109,7 +109,7 @@ public class MyCanvas extends Canvas{
             break;
         }
 
-        switch (enlarge) {
+        /*switch (enlarge) {
         
         case 0:
             enlargePercent = 1.0f;
@@ -151,7 +151,7 @@ public class MyCanvas extends Canvas{
         case 5:
             scaleValue = 3.0f;
             break;
-        }
+        }*/
 
         switch (bold) {
         
