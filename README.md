@@ -5,9 +5,13 @@ UON Summer Research Project - Facilitating learning for visually-impaired studen
 
 The haptic device currently takes in an image that produces a static feel of friction which allows a visually-impaired user to sense the different colors in the images. The problem with the device lies in its processing and outputting the image. The static friction does not provide an intuitive description to the user, but in an "inverted manner".
 
-For instance, imagine an image of a black filled colored circle with a white background. When the device takes in the image, the friction will be produced on the white background while the black filled circle has a smooth feel where there is no friction at all. 
+For instance, imagine an image of a black filled colored circle with a white background. When the device takes in the image, the friction will be produced on the white background while the black filled circle has a smooth feel where there is no friction at all.
+
+![test](test.png)
 
 Intuitively, the white background should be smooth while the dark black circle should be producing the highest friction. We also wanted the friction level to vary as the color changes too.
+
+![invert-test](invert-test.png)
 
 The purpose of the application is to produce an inverted image and integrate it with the haptic device so that it can produce a desirable static projection to the input-image.
 
