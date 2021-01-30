@@ -7,13 +7,15 @@ The haptic device currently takes in an image that produces a static feel of fri
 
 For instance, imagine an image of a black filled colored circle with a white background. When the device takes in the image, the friction will be produced on the white background while the black filled circle has a smooth feel where there is no friction at all.
 
-![test](test.png)
+![example](example.png)
 
 Intuitively, the white background should be smooth while the dark black circle should be producing the highest friction. We also wanted the friction level to vary as the color changes too.
 
-![invert-test](invert-test.png)
+![example2](example2.png)
 
 The purpose of the application is to produce an inverted image and integrate it with the haptic device so that it can produce a desirable static projection to the input-image.
+
+![example3](example3.png)
 
 # Functionality of the Application
 
