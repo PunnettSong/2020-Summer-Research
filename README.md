@@ -24,7 +24,7 @@ The application will takes an image in JPG, PNG and BMP and will perform the fol
  1. Invert the image
  2. Change the level of contrast of the image
  3. Zooming the image
- 4. Enlarge the resolution of the image based on an input provided
+ 4. Enlarge the resolution of the image
  5. Enlarge the pixel of lines/graphs in the image assuming that the background is white (i.e making the line/graphs more bold)
 
 # Input
@@ -34,24 +34,24 @@ The application will read the input from a textfile named "config.txt" where the
  1. The name of the image in JPG, PNG and BMP
  2. An integer that controls the level of whiteness of the image. 
 
-	Whiteness Level: 0 =< Int < 6
+	Whiteness Level: 0 =< int < 6
 
  3. A float that tells how far the level of the zoom should be. 
 
-	Zooming in: Float > 1.0 e.g 1.3
-	No Zoom: Float = 1.0
-	Zooming out: 0.0f < Float < 1.0 
+	Zooming in: float > 1.0 e.g 1.3
+	No Zoom: float = 1.0
+	Zooming out: 0.0 < float < 1.0 
 
  4. An float that tells how large the resolution should be.
 
-	Increase: Float > 1.0 e.g 1.3
-	No changes: Float = 1.0
-	Decrease: 0.0 < Float < 1.0 e.g 0.8
+	Increase: float > 1.0 e.g 1.3
+	No changes: float = 1.0
+	Decrease: 0.0 < float < 1.0 e.g 0.8
 
  5. An integer that tells how large the bold should be. 
 	
-	No Bold: Int = 0
-	Bold Level: 1 < Int < 6
+	No Bold: int = 0
+	Bold Level: 1 < int < 6
  
 
 # Compile and Run the Application
