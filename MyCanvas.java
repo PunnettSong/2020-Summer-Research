@@ -109,50 +109,6 @@ public class MyCanvas extends Canvas{
             break;
         }
 
-        /*switch (enlarge) {
-        
-        case 0:
-            enlargePercent = 1.0f;
-            break;
-        case 1:
-            enlargePercent = 1.1f;
-            break;
-        case 2:
-            enlargePercent = 1.2f;
-            break;
-        case 3:
-            enlargePercent = 1.3f; 
-            break;
-        case 4:
-            enlargePercent = 1.4f;
-            break;
-        case 5:
-            enlargePercent = 1.5f;
-            break;
-        }
-
-        switch (scale) {
-        
-        case 0:
-            scaleValue = 1.0f;
-            break;
-        case 1:
-            scaleValue = 1.5f;
-            break;
-        case 2:
-            scaleValue = 2.0f;
-            break;
-        case 3:
-            scaleValue = 2.5f; 
-            break;
-        case 4:
-            scaleValue = 2.5f;
-            break;
-        case 5:
-            scaleValue = 3.0f;
-            break;
-        }*/
-
         switch (bold) {
         
         case 0:
@@ -197,16 +153,6 @@ public class MyCanvas extends Canvas{
         
         int width = image.getWidth();
         int height = image.getHeight();
-
-        /*if(width <= 210 || height <= 210){
-            width = (int) (width * 1.0f);
-            height = (int) (height * 1.0f);
-        }
-
-        inputFile = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics2D addSize = inputFile.createGraphics();
-        addSize.drawImage(image, 0, 0, width, height, null);
-        addSize.dispose();*/
 
         //Resizing an Image
 
