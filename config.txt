@@ -1,5 +1,5 @@
-circle.png
+test.png
 5
-1.0f
-0.8f
-4
+1.0
+1.0
+0

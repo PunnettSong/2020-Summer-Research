@@ -198,79 +198,16 @@ public class MyCanvas extends Canvas{
         int width = image.getWidth();
         int height = image.getHeight();
 
-        if(width <= 210 || height <= 210){
-            width = (int) (width * 1.5f);
-            height = (int) (height * 1.5f);
+        /*if(width <= 210 || height <= 210){
+            width = (int) (width * 1.0f);
+            height = (int) (height * 1.0f);
         }
 
         inputFile = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D addSize = inputFile.createGraphics();
         addSize.drawImage(image, 0, 0, width, height, null);
-        addSize.dispose();
+        addSize.dispose();*/
 
-        // Enlarging the pixel of a line/graph
-        if(bold != 0){
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) {
-                    int rgba = inputFile.getRGB(x, y);
-                    Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                        col = new Color(col.getRed(),
-                                        col.getGreen(),
-                                        col.getBlue());
-                        for(int i = 0; i < bold; i++){
-                            int back = x--;
-                            inputFile.setRGB(back, y, col.getRGB());
-                        }
-
-                        for (int j = 0; j < bold; j++){
-                            x++;
-                            inputFile.setRGB(x, y, col.getRGB());
-                        }
-                    }
-                }
-            }
-
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    int rgba = inputFile.getRGB(x, y);
-                    Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
-                        col = new Color(col.getRed(),
-                                        col.getGreen(),
-                                        col.getBlue());
-                        for(int i = 0; i < bold; i++){
-                            int up = y--;
-                            inputFile.setRGB(x, up, col.getRGB());
-                        }
-
-                        for (int j = 0; j < bold; j++){
-                            y++;
-                            inputFile.setRGB(x, y, col.getRGB());
-                        }
-                    }
-                }
-            }
-        }
-
-        //Loop and grab the RGB pixel from the image and invert it
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                int rgba = inputFile.getRGB(x, y);
-                Color col = new Color(rgba, true);
-                col = new Color(255 - col.getRed(),
-                                255 - col.getGreen(),
-                                255 - col.getBlue());
-                inputFile.setRGB(x, y, col.getRGB());
-            }
-        }
-
-        // Change the contrast of the image
-
-        RescaleOp op = new RescaleOp(intensityValue, 0, null);
-        inputFile = op.filter(inputFile, inputFile);
-        
         //Resizing an Image
 
         int resizedWidth = (int) (width * scaleValue);
@@ -280,18 +217,88 @@ public class MyCanvas extends Canvas{
         int pixelHeight = (int) (height * pixelValue);
 
         BufferedImage zoomImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics2D zoomGraphics2D = zoomImage.createGraphics();
-        zoomGraphics2D.drawImage(inputFile, 0, 0, pixelWidth, pixelHeight, null); // different
-        zoomGraphics2D.dispose();
+        Graphics2D zoom = zoomImage.createGraphics();
+        zoom.setComposite(AlphaComposite.Src);
+        zoom.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        zoom.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+        zoom.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        zoom.drawImage(image, 0, 0, pixelWidth, pixelHeight, null); // different
+        zoom.dispose();
 
         BufferedImage resizedImage = new BufferedImage(resizedWidth, resizedHeight, BufferedImage.TYPE_INT_RGB);
-        Graphics2D graphics2D = resizedImage.createGraphics();
-        graphics2D.drawImage(zoomImage, 0, 0, resizedWidth, resizedHeight, null);
-        graphics2D.dispose();
+        Graphics2D resized = resizedImage.createGraphics();
+        resized.setComposite(AlphaComposite.Src);
+        resized.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        resized.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+        resized.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        resized.drawImage(zoomImage, 0, 0, resizedWidth, resizedHeight, null);
+        resized.dispose();
+
+        // Enlarging the pixel of a line/graph
+        if(bold != 0){
+            for (int y = 0; y < resizedHeight; y++) {
+                for (int x = 0; x < resizedWidth; x++) {
+                    int rgba = resizedImage.getRGB(x, y);
+                    Color col = new Color(rgba, true);
+                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                        col = new Color(col.getRed(),
+                                        col.getGreen(),
+                                        col.getBlue());
+                        for(int i = 0; i < bold; i++){
+                            int back = x--;
+                            resizedImage.setRGB(back, y, col.getRGB());
+                        }
+
+                        for (int j = 0; j < bold; j++){
+                            x++;
+                            resizedImage.setRGB(x, y, col.getRGB());
+                        }
+                    }
+                }
+            }
+
+            for (int x = 0; x < resizedWidth; x++) {
+                for (int y = 0; y < resizedHeight; y++) {
+                    int rgba = resizedImage.getRGB(x, y);
+                    Color col = new Color(rgba, true);
+                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                        col = new Color(col.getRed(),
+                                        col.getGreen(),
+                                        col.getBlue());
+                        for(int i = 0; i < bold; i++){
+                            int up = y--;
+                            resizedImage.setRGB(x, up, col.getRGB());
+                        }
+
+                        for (int j = 0; j < bold; j++){
+                            y++;
+                            resizedImage.setRGB(x, y, col.getRGB());
+                        }
+                    }
+                }
+            }
+        }
+
+        //Loop and grab the RGB pixel from the image and invert it
+        for (int x = 0; x < resizedWidth; x++) {
+            for (int y = 0; y < resizedHeight; y++) {
+                int rgba = resizedImage.getRGB(x, y);
+                Color col = new Color(rgba, true);
+                col = new Color(255 - col.getRed(),
+                                255 - col.getGreen(),
+                                255 - col.getBlue());
+                resizedImage.setRGB(x, y, col.getRGB());
+            }
+        }
+
+        // Change the contrast of the image
+
+        RescaleOp op = new RescaleOp(intensityValue, 0, null);
+        inputFile = op.filter(resizedImage, resizedImage);
 
         //Creating an output image
         try {
-            ImageIO.write(resizedImage, extensionStr, new File("invert-" + imageName));
+            ImageIO.write(inputFile, extensionStr, new File("invert-" + imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }

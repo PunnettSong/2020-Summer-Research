@@ -3,11 +3,13 @@ UON Summer Research Project - Facilitating learning for visually-impaired studen
 
 # Background
 
-The haptic device currently takes in an image that produces a static feel or friction. The problem with the device is that the friction is produced in an "inverted way".
+The haptic device currently takes in an image that produces a static feel of friction which allows a visually-impaired user to sense the different colors in the images. The problem with the device lies in its processing and outputting the image. The static friction does not provide an intuitive description to the user, but in an "inverted manner".
 
-For instance, imagine an image of a black filled coloured circle with a white background. When the device takes in the image, the friction will be produced on the white background while the black filled circle has a smooth feel where there is no friction at all. Intuitively, the white background should be smooth while the dark black circle should be producing the highest friction. We also wanted the friction level to vary as the colour changes too.
+For instance, imagine an image of a black filled colored circle with a white background. When the device takes in the image, the friction will be produced on the white background while the black filled circle has a smooth feel where there is no friction at all. 
 
-The purpose of the application is to produce an inverted image and integrate with the haptic device, so that it can produce an intuitive static projection from the image.
+Intuitively, the white background should be smooth while the dark black circle should be producing the highest friction. We also wanted the friction level to vary as the color changes too.
+
+The purpose of the application is to produce an inverted image and integrate it with the haptic device so that it can produce a desirable static projection to the input-image.
 
 # Functionality of the Application
 
@@ -26,19 +28,19 @@ The application will read the input from a textfile named "config.txt" where the
  1. The name of the image in JPG, PNG and BMP
  2. An integer that controls the level of whiteness of the image. 
 
-	Whiteness Level: 1 < Int < 6
+	Whiteness Level: 0 =< Int < 6
 
  3. A float that tells how far the level of the zoom should be. 
 
-	Zooming in: Float > 1.0f e.g 1.3f
-	No Zoom: Float = 1.0f
-	Zooming out: 0.0f < Float < 1.0f 
+	Zooming in: Float > 1.0 e.g 1.3
+	No Zoom: Float = 1.0
+	Zooming out: 0.0f < Float < 1.0 
 
  4. An float that tells how large the resolution should be.
 
-	Increase: Float > 1.0f e.g 1.3f
-	No changes: Float = 1.0f
-	Decrease: 0.0f < Float < 1.0f e.g 0.8f
+	Increase: Float > 1.0 e.g 1.3
+	No changes: Float = 1.0
+	Decrease: 0.0 < Float < 1.0 e.g 0.8
 
  5. An integer that tells how large the bold should be. 
 	
