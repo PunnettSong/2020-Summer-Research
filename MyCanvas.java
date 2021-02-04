@@ -4,6 +4,7 @@ import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.attribute.UserPrincipal;
 import java.util.*;
 import javax.imageio.ImageIO;
 
@@ -186,7 +187,7 @@ public class MyCanvas extends Canvas{
                 for (int x = 0; x < resizedWidth; x++) {
                     int rgba = resizedImage.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    if (col.getRed() != 255 || col.getGreen() != 255 || col.getBlue() != 255){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());
@@ -207,22 +208,27 @@ public class MyCanvas extends Canvas{
                 for (int y = 0; y < resizedHeight; y++) {
                     int rgba = resizedImage.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 && col.getGreen() != 255 && col.getBlue() != 255){
+                    if (col.getRed() != 255 || col.getGreen() != 255 || col.getBlue() != 255){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());
+
                         for(int i = 0; i < bold; i++){
                             int up = y--;
                             resizedImage.setRGB(x, up, col.getRGB());
                         }
-
+                        
                         for (int j = 0; j < bold; j++){
                             y++;
                             resizedImage.setRGB(x, y, col.getRGB());
                         }
+
+                        
                     }
                 }
             }
+
+            
         }
 
         //Loop and grab the RGB pixel from the image and invert it
