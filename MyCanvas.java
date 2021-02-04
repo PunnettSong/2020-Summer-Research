@@ -193,20 +193,18 @@ public class MyCanvas extends Canvas{
                                         col.getBlue());
                         for(int i = 0; i < bold; i++){
                             int back = x--;
-                            int up = y--;
-                            resizedImage.setRGB(back, up, col.getRGB());
+                            resizedImage.setRGB(back, y, col.getRGB());
                         }
 
                         for (int j = 0; j < bold; j++){
                             x++;
-                            y++;
                             resizedImage.setRGB(x, y, col.getRGB());
                         }
                     }
                 }
             }
 
-            /*for (int x = 0; x < resizedWidth; x++) {
+            for (int x = 0; x < resizedWidth; x++) {
                 for (int y = 0; y < resizedHeight; y++) {
                     int rgba = resizedImage.getRGB(x, y);
                     Color col = new Color(rgba, true);
@@ -224,9 +222,13 @@ public class MyCanvas extends Canvas{
                             y++;
                             resizedImage.setRGB(x, y, col.getRGB());
                         }
+
+                        
                     }
                 }
-            }*/
+            }
+
+            
         }
 
         //Loop and grab the RGB pixel from the image and invert it
