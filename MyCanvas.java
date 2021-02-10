@@ -109,28 +109,6 @@ public class MyCanvas extends Canvas{
             break;
         }
 
-        switch (bold) {
-        
-        case 0:
-            bold = 0;
-            break;
-        case 1:
-            bold= 2;
-            break;
-        case 2:
-            bold = 4;
-            break;
-        case 3:
-            bold = 6; 
-            break;
-        case 4:
-            bold = 8;
-            break;
-        case 5:
-            bold = 10;
-            break;
-        }
-
         invertImage(text[0], intensityValue, enlargePercent, scaleValue, bold);
     }
 

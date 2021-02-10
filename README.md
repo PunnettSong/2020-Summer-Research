@@ -51,12 +51,14 @@ The application will read the input from a textfile named "config.txt" where the
  5. An integer that tells how large the bold should be. 
 	
 	No Bold: int = 0
-	Bold Level: 1 < int < 6
+	Bold Level: int > 0
+
+	**Note: The bold level input will depend on the images i.e some images may require a higher number than others.
  
 
 # Compile and Run the Application
 
-Once the textfile is filled with relevent information, the application can be executed from the command prompt/terminal screen that takes in an argument which is the text file name.
+Once the textfile is filled with relevant information, the application can be executed from the command prompt/terminal screen that takes in an argument which is the text file name.
 
 The following command will allow you to run and compile the application
 
