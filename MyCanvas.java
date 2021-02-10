@@ -92,7 +92,6 @@ public class MyCanvas extends Canvas{
         
         case 0:
             intensityValue = 0.0f;
-
         case 1:
             intensityValue = 0.6f;
             break;
@@ -100,7 +99,7 @@ public class MyCanvas extends Canvas{
             intensityValue = 0.7f;
             break;
         case 3:
-            intensityValue = 0.8f; 
+            intensityValue = 0.8f;
             break;
         case 4:
             intensityValue = 0.9f;
@@ -187,50 +186,22 @@ public class MyCanvas extends Canvas{
                 for (int x = 0; x < resizedWidth; x++) {
                     int rgba = resizedImage.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 || col.getGreen() != 255 || col.getBlue() != 255){
+                    if ((col.getRed() < 32) || (col.getGreen() < 32) || (col.getBlue() < 32)){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());
-                        for(int i = 0; i < bold; i++){
-                            int back = x--;
-                            int up = y--;
-                            resizedImage.setRGB(back, up, col.getRGB());
-                        }
-
-                        for (int j = 0; j < bold; j++){
-                            x++;
-                            y++;
-                            resizedImage.setRGB(x, y, col.getRGB());
+                        
+                        for(int i = 1; i <= bold; i++){
+                        int down = y - i;
+                        resizedImage.setRGB(x, down, col.getRGB());
+                            for(int j = 1; j <= bold; j++){
+                                int forward = x + j;
+                                resizedImage.setRGB(forward, down, col.getRGB());
+                            }
                         }
                     }
                 }
             }
-
-            /*for (int x = 0; x < resizedWidth; x++) {
-                for (int y = 0; y < resizedHeight; y++) {
-                    int rgba = resizedImage.getRGB(x, y);
-                    Color col = new Color(rgba, true);
-                    if (col.getRed() != 255 || col.getGreen() != 255 || col.getBlue() != 255){
-                        col = new Color(col.getRed(),
-                                        col.getGreen(),
-                                        col.getBlue());
-
-                        for(int i = 0; i < bold; i++){
-                            int up = y--;
-                            resizedImage.setRGB(x, up, col.getRGB());
-                        }
-                        
-                        for (int j = 0; j < bold; j++){
-                            y++;
-                            resizedImage.setRGB(x, y, col.getRGB());
-                        }
-
-                        
-                    }
-                }
-            }*/
-
-            
         }
 
         //Loop and grab the RGB pixel from the image and invert it

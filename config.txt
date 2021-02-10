@@ -1,5 +1,5 @@
-tangent.png
+Sine-Graph.png
 5
 1.0
 1.0
-4
+2
