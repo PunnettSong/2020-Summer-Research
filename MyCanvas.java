@@ -48,7 +48,7 @@ public class MyCanvas extends Canvas{
             */
             
             int count = 0;
-            int letter = text[0].length()-1;
+            int letter = text[0].length() - 1;
             while(text[0].charAt(letter) != '.'){
                 count++;
                 letter--;
@@ -164,7 +164,7 @@ public class MyCanvas extends Canvas{
                 for (int x = 0; x < resizedWidth; x++) {
                     int rgba = resizedImage.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if ((col.getRed() < 32) && (col.getGreen() < 32) && (col.getBlue() < 32)){
+                    if ((col.getRed() < 64) || (col.getGreen() < 64)  || (col.getBlue() < 64)){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());
