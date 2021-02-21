@@ -164,7 +164,7 @@ public class MyCanvas extends Canvas{
                 for (int x = 0; x < resizedWidth; x++) {
                     int rgba = resizedImage.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if ((col.getRed() < 64) || (col.getGreen() < 64)  || (col.getBlue() < 64)){
+                    if ((col.getRed() < 32) || (col.getGreen() < 110)  || (col.getBlue() < 32)){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());

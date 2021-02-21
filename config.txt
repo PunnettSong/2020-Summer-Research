@@ -1,4 +1,4 @@
-Sine-Graph.png
+Logarithmic.png
 5
 1.0
 1.0
