@@ -74,6 +74,7 @@ public class MyCanvas extends Canvas{
         catch (FileNotFoundException e) {
 			e.printStackTrace();
         }
+
         /*  
         Read the second line from the text file
 
@@ -164,7 +165,7 @@ public class MyCanvas extends Canvas{
                 for (int x = 0; x < resizedWidth; x++) {
                     int rgba = resizedImage.getRGB(x, y);
                     Color col = new Color(rgba, true);
-                    if ((col.getRed() < 32) || (col.getGreen() < 110)  || (col.getBlue() < 32)){
+                    if ((col.getRed() < 32) || (col.getGreen() < 32)  || (col.getBlue() < 32)){
                         col = new Color(col.getRed(),
                                         col.getGreen(),
                                         col.getBlue());
@@ -178,6 +179,21 @@ public class MyCanvas extends Canvas{
                             }
                         }
                     }
+
+                    /*else if (((col.getRed() > 32) && (col.getRed() < 110)) || ((col.getRed() > 32) && (col.getGreen() < 110))  || ((col.getBlue() < 32) && (col.getRed() < 110))){
+                        col = new Color(col.getRed(),
+                                        col.getGreen(),
+                                        col.getBlue());
+                        
+                        for(int i = 1; i <= bold; i++){
+                        int down = y - i;
+                        resizedImage.setRGB(x, down, col.getRGB());
+                            for(int j = 1; j <= bold; j++){
+                                int forward = x + j;
+                                resizedImage.setRGB(forward, down, col.getRGB());
+                            }
+                        }
+                    }*/
                 }
             }
         }
