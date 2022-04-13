@@ -1,4 +1,4 @@
-# Project-Haptic
+# 2020-Summer-Research Project
 UON Summer Research Project - Facilitating learning for visually-impaired students using a haptic screen
 
 # Background
